@@ -1,0 +1,14 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<configuration>
+    <appender name="file" class="ch.qos.logback.core.FileAppender">
+        <file>app.log</file>
+        <encoder>
+            <pattern>[%-5p] [%c{25}] [%d{yyyy-MM-dd | HH:mm:ss, GMT-3}] - %m%n</pattern>
+        </encoder>
+    </appender>
+    <!-- Disable hibernate logs -->
+    <logger name="org.hibernate" level="OFF"/>
+    <root level="INFO">
+        <appender-ref ref="file"/>
+    </root>
+</configuration>
