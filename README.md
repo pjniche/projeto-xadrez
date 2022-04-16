@@ -15,7 +15,7 @@ mvn clean install
 Você pode rodar o programa com sua IDE de escolha, ou instalar e rodar diretamente pela linha de comando. Caso escolha rodar pelo terminal, pode usar os seguintes comandos para rodar as classes compiladas, ou a versão empacotada em jar.
 
 ```
-java -classpath target\*  application.Program
+java -classpath target\*  Main
 java -jar target/projeto-xadres.jar
 ```
 

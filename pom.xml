@@ -7,7 +7,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Chess simulator.</name>
-    <description>Java chess simulator and experiments with AI.</description>
+    <description>Java xadrez simulator and experiments with AI.</description>
     <url>https://github.com/pjniche/projeto-xadrez/</url>
     <scm>
         <connection>scm:git:https://github.com/pjniche/projeto-xadrez.git</connection>
@@ -178,7 +178,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>application.Program</mainClass>
+                            <mainClass>Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -269,9 +269,9 @@
                 </executions>
                 <configuration>
                     <excludes>
-                        <exclude>**/exception/*</exclude>
+                        <exclude>**/excecao/*</exclude>
                         <exclude>**/model/*</exclude>
-                        <exclude>**/Program*</exclude>
+                        <exclude>**/Main*</exclude>
                     </excludes>
                 </configuration>
             </plugin>
