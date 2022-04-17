@@ -4,7 +4,7 @@ import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
 /** Uma peca possui uma posicao e um tabuleiro para estar. */
-public class Peca {
+public abstract class Peca {
 
   private Posicao posicao;
   private Tabuleiro tabuleiro;
@@ -47,4 +47,23 @@ public class Peca {
     this.posicao.setLinha(posicao.getLinha());
     this.posicao.setColuna(posicao.getColuna());
   }
+
+  public abstract boolean[][] movimentosPossiveis();
+
+  public boolean movimentoPossivel(Posicao posicao) {
+    return movimentosPossiveis()[posicao.getLinha()][posicao.getColuna()];
+  }
+
+  public boolean existeMovimentoPossivel() {
+    boolean[][] matriz = movimentosPossiveis();
+    for (int i=0; i<matriz.length; i++) {
+      for (int j=0; j<matriz.length; j++) {
+        if (matriz[i][j]) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
 }

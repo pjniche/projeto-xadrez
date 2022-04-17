@@ -75,6 +75,9 @@ public class Partida {
     if (!tabuleiro.temPeca(posicao)) {
       throw new ChessException("Essa posicao nao tem peca.");
     }
+    if (!tabuleiro.getPeca(posicao).existeMovimentoPossivel()) {
+      throw new ChessException("Nao existe movimento possivel para esta peca.");
+    }
   }
 
   /**

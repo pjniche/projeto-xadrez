@@ -5,7 +5,7 @@ import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
 /** Uma peca de xadrez com uma cor. */
-public class PecaDeXadrez extends Peca {
+public abstract class PecaDeXadrez extends Peca {
 
   @Getter private Cor cor;
 

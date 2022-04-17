@@ -2,6 +2,8 @@ package pecas;
 
 import tabuleiro.Tabuleiro;
 
+import java.util.Arrays;
+
 /** Peca Rei de xadrez. */
 public class Rei extends PecaDeXadrez {
 
@@ -18,5 +20,12 @@ public class Rei extends PecaDeXadrez {
   @Override
   public String toString() {
     return "R";
+  }
+
+  @Override
+  public boolean[][] movimentosPossiveis() {
+    boolean[][] matriz = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
+    // TEMPORARIO: Torna todas as opcoes impossiveis pois o default eh false.
+    return matriz;
   }
 }

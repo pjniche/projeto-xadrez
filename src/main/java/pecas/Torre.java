@@ -2,6 +2,8 @@ package pecas;
 
 import tabuleiro.Tabuleiro;
 
+import java.util.Arrays;
+
 /** Peca Torre de xadrez. */
 public class Torre extends PecaDeXadrez {
 
@@ -18,5 +20,15 @@ public class Torre extends PecaDeXadrez {
   @Override
   public String toString() {
     return "T";
+  }
+
+  @Override
+  public boolean[][] movimentosPossiveis() {
+    boolean[][] matriz = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
+    // TEMPORARIO: Torna todas as opcoes possiveis.
+    for (boolean[] linha : matriz) {
+      Arrays.fill(linha,true);
+    }
+    return matriz;
   }
 }

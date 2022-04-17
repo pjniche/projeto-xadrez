@@ -1,11 +1,14 @@
+package xadrez;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import excecao.ChessException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import tabuleiro.NotacaoXadrez;
 import tabuleiro.Posicao;
-import xadrez.Partida;
 
 public class PartidaTest {
 
@@ -25,6 +28,12 @@ public class PartidaTest {
     partida.movimentoDeXadrez(new NotacaoXadrez('a', 1), new NotacaoXadrez('a', 2));
     // Checagem
     assertTrue(partida.getTabuleiro().temPeca(new Posicao(6, 0)));
+  }
+
+  @Test
+  public void testMovimentoDeXadrez_quandoMovimentoImpossivel_entaoJogaExcecao() {
+    // Nao eh possivel mover o rei 2 casas a frente.
+    assertThrows(ChessException.class,()->partida.movimentoDeXadrez(new NotacaoXadrez('e', 1), new NotacaoXadrez('e', 3)));
   }
 
   // Modelo para testes.
