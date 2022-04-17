@@ -48,22 +48,41 @@ public abstract class Peca {
     this.posicao.setColuna(posicao.getColuna());
   }
 
+  /**
+   * Deve ser implementada por cada peca para checar os movimentos possiveis na situacao atual.
+   *
+   * @return Matriz de booleanos representando a possibilidade de cada movimento no tabuleiro.
+   */
   public abstract boolean[][] movimentosPossiveis();
 
+  /**
+   * Usa a implementacao da classe abstrata 'movimentosPossiveis' para checar se a posicao dada eh
+   * possivel.
+   *
+   * @param posicao Posicao a ser checada.
+   * @return True ou False.
+   */
   public boolean movimentoPossivel(Posicao posicao) {
     return movimentosPossiveis()[posicao.getLinha()][posicao.getColuna()];
   }
 
+  /**
+   * Usa a implementacao da classe abstrata 'movimentosPossiveis' para checar se existe algum
+   * movimento possivel a ser feito.
+   *
+   * @return True ou False.
+   */
   public boolean existeMovimentoPossivel() {
     boolean[][] matriz = movimentosPossiveis();
-    for (int i=0; i<matriz.length; i++) {
-      for (int j=0; j<matriz.length; j++) {
-        if (matriz[i][j]) {
+    for (boolean[] linha : matriz) {
+      for (boolean coluna : linha) {
+        // Checa se ha movimento possivel nessa coluna.
+        if (coluna) {
           return true;
         }
+        // Se nao eh possivel, continua checando.
       }
     }
     return false;
   }
-
 }

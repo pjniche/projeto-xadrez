@@ -41,17 +41,18 @@ public class InterfaceTerminal {
   /**
    * Desenha o tabuleiro no terminal.
    *
-   * @param pecas Matriz de pecas.
+   * @param matrizDePecas Matriz de pecas.
    */
-  public static void mostraTabuleiro(PecaDeXadrez[][] pecas) {
-    for (int i = 0; i < pecas.length; i++) {
-      System.out.print((8 - i) + " ");
-      for (int j = 0; j < pecas.length; j++) {
-        mostraPeca(pecas[i][j]);
+  public static void mostraTabuleiro(PecaDeXadrez[][] matrizDePecas) {
+    int numeroDaLinha = 8;
+    for (PecaDeXadrez[] linha : matrizDePecas) {
+      System.out.print(numeroDaLinha-- + " ");
+      for (PecaDeXadrez peca : linha) {
+        mostraPeca(peca);
       }
       System.out.println();
     }
-    System.out.println(" a b c d e f g h");
+    System.out.println("  a b c d e f g h");
   }
 
   /**

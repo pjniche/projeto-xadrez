@@ -2,8 +2,6 @@ package pecas;
 
 import tabuleiro.Tabuleiro;
 
-import java.util.Arrays;
-
 /** Peca Rei de xadrez. */
 public class Rei extends PecaDeXadrez {
 

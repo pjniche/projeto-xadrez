@@ -33,7 +33,9 @@ public class PartidaTest {
   @Test
   public void testMovimentoDeXadrez_quandoMovimentoImpossivel_entaoJogaExcecao() {
     // Nao eh possivel mover o rei 2 casas a frente.
-    assertThrows(ChessException.class,()->partida.movimentoDeXadrez(new NotacaoXadrez('e', 1), new NotacaoXadrez('e', 3)));
+    assertThrows(
+        ChessException.class,
+        () -> partida.movimentoDeXadrez(new NotacaoXadrez('e', 1), new NotacaoXadrez('e', 3)));
   }
 
   // Modelo para testes.
