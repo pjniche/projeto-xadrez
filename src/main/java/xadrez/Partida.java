@@ -48,6 +48,7 @@ public class Partida {
     Posicao posInicial = posicaoInicial.paraPosicao();
     Posicao posFinal = posicaoFinal.paraPosicao();
     validaPosicao(posInicial);
+    validaDestino(posInicial, posFinal);
     Peca pecaCapturada = mover(posInicial, posFinal);
     return (PecaDeXadrez) pecaCapturada;
   }
@@ -67,7 +68,7 @@ public class Partida {
   }
 
   /**
-   * Checa se a posicao dada é valida.
+   * Checa se a posicao dada eh valida.
    *
    * @param posicao Posicao para validar.
    */
@@ -77,6 +78,18 @@ public class Partida {
     }
     if (!tabuleiro.getPeca(posicao).existeMovimentoPossivel()) {
       throw new ChessException("Nao existe movimento possivel para esta peca.");
+    }
+  }
+
+  /**
+   * Checa se a posicao final do movimento eh valida.
+   *
+   * @param posInicial Posicao inicial.
+   * @param posFinal Posicao final.
+   */
+  private void validaDestino(Posicao posInicial, Posicao posFinal) {
+    if (!tabuleiro.getPeca(posInicial).movimentoPossivel(posFinal)) {
+      throw new ChessException("A peca nao pode se mover para esta posicao.");
     }
   }
 
@@ -91,7 +104,7 @@ public class Partida {
     tabuleiro.colocaPeca(peca, new NotacaoXadrez(coluna, linha).paraPosicao());
   }
 
-  /** Coloca todas as pecasno tabuleiro em suas posicões iniciais. */
+  /** Coloca todas as pecasno tabuleiro em suas posicoes iniciais. */
   private void pecasIniciais() {
     novaPeca('a', 1, new Torre(tabuleiro, Cor.BRANCO));
     novaPeca('h', 1, new Torre(tabuleiro, Cor.BRANCO));

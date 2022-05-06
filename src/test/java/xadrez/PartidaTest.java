@@ -38,6 +38,13 @@ public class PartidaTest {
         () -> partida.movimentoDeXadrez(new NotacaoXadrez('e', 1), new NotacaoXadrez('e', 3)));
   }
 
+  @Test
+  public void testMovimentoDaTorre_quandoInvalido_entaoJogaExcecao() {
+    assertThrows(
+        ChessException.class,
+        () -> partida.movimentoDeXadrez(new NotacaoXadrez('a', 1), new NotacaoXadrez('b', 2)));
+  }
+
   // Modelo para testes.
   @Test
   public void testNomeDaFuncao_quandoCondicao_entaoRetornoExperado() {

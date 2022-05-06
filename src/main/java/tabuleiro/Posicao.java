@@ -16,4 +16,15 @@ public class Posicao {
 
   private int linha;
   private int coluna;
+
+  /**
+   * Setter auxiliar para os 2 campos ao mesmo tempo.
+   *
+   * @param linha Nova linha.
+   * @param coluna Nova coluna.
+   */
+  public void setPosicao(int linha, int coluna) {
+    this.linha = linha;
+    this.coluna = coluna;
+  }
 }
