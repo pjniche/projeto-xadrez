@@ -37,6 +37,12 @@ public class Partida {
     return matriz;
   }
 
+  public boolean[][] movimentosPossiveis(NotacaoXadrez posicaoInicial) {
+    Posicao posicao = posicaoInicial.paraPosicao();
+    validaPosicao(posicao);
+    return tabuleiro.getPeca(posicao).movimentosPossiveis();
+  }
+
   /**
    * Faz um movimento de xadrez e retorna a peca capturada ou null.
    *

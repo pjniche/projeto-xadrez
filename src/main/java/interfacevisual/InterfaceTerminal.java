@@ -48,7 +48,19 @@ public class InterfaceTerminal {
     for (PecaDeXadrez[] linha : matrizDePecas) {
       System.out.print(numeroDaLinha-- + " ");
       for (PecaDeXadrez peca : linha) {
-        mostraPeca(peca);
+        mostraPeca(peca, false);
+      }
+      System.out.println();
+    }
+    System.out.println("  a b c d e f g h");
+  }
+
+  public static void mostraTabuleiro(PecaDeXadrez[][] matrizDePecas, boolean[][] movimentosPossiveis) {
+    int numeroDaLinha = 8;
+    for (PecaDeXadrez[] linha : matrizDePecas) {
+      System.out.print(numeroDaLinha-- + " ");
+      for (PecaDeXadrez peca : linha) {
+        mostraPeca(peca, movimentosPossiveis); // ERRO AQUI!
       }
       System.out.println();
     }
@@ -60,9 +72,12 @@ public class InterfaceTerminal {
    *
    * @param peca Peca.
    */
-  private static void mostraPeca(PecaDeXadrez peca) {
+  private static void mostraPeca(PecaDeXadrez peca, boolean planoDeFundo) {
+    if (planoDeFundo) {
+      System.out.print(ANSI_BLUE_BACKGROUND);
+    }
     if (peca == null) {
-      System.out.print("-");
+      System.out.print("-" + ANSI_RESET);
     } else {
       if (peca.getCor() == Cor.BRANCO) {
         System.out.print(ANSI_WHITE + peca + ANSI_RESET);

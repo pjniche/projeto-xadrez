@@ -29,6 +29,9 @@ public class Main {
         System.out.print("Posicao Inicial: ");
         NotacaoXadrez posicaoInicial = InterfaceTerminal.leNotacaoXadrez(scanner);
 
+        boolean[][] movimentosPossiveis = partida.movimentosPossiveis(posicaoInicial);
+        InterfaceTerminal.limpaTela();
+        InterfaceTerminal.mostraTabuleiro(partida.getPecas(), movimentosPossiveis);
         System.out.println();
         System.out.print("Posicao Final: ");
         NotacaoXadrez posicaoFinal = InterfaceTerminal.leNotacaoXadrez(scanner);
