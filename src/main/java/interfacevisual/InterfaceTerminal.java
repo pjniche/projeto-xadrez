@@ -44,11 +44,10 @@ public class InterfaceTerminal {
    * @param matrizDePecas Matriz de pecas.
    */
   public static void mostraTabuleiro(PecaDeXadrez[][] matrizDePecas) {
-    int numeroDaLinha = 8;
-    for (PecaDeXadrez[] linha : matrizDePecas) {
-      System.out.print(numeroDaLinha-- + " ");
-      for (PecaDeXadrez peca : linha) {
-        mostraPeca(peca, false);
+    for (int i = 0; i < matrizDePecas.length; i++) {
+      System.out.print((8 - i) + " ");
+      for (int j = 0; j < matrizDePecas.length; j++) {
+        mostraPeca(matrizDePecas[i][j], false);
       }
       System.out.println();
     }
@@ -56,11 +55,10 @@ public class InterfaceTerminal {
   }
 
   public static void mostraTabuleiro(PecaDeXadrez[][] matrizDePecas, boolean[][] movimentosPossiveis) {
-    int numeroDaLinha = 8;
-    for (PecaDeXadrez[] linha : matrizDePecas) {
-      System.out.print(numeroDaLinha-- + " ");
-      for (PecaDeXadrez peca : linha) {
-        mostraPeca(peca, movimentosPossiveis); // ERRO AQUI!
+    for (int i = 0; i < matrizDePecas.length; i++) {
+      System.out.print((8 - i) + " ");
+      for (int j = 0; j < matrizDePecas.length; j++) {
+        mostraPeca(matrizDePecas[i][j], movimentosPossiveis[i][j]);
       }
       System.out.println();
     }
