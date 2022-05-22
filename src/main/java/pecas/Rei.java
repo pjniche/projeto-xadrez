@@ -30,54 +30,54 @@ public class Rei extends PecaDeXadrez {
   public boolean[][] movimentosPossiveis() {
     boolean[][] matriz = new boolean[getTabuleiro().getLinhas()][getTabuleiro().getColunas()];
 
-    Posicao posicao = new Posicao(0, 0);
+    Posicao novaPosicao = new Posicao(0, 0);
 
     // Cima
-    posicao.setPosicao(posicao.getLinha() - 1, posicao.getColuna());
-    if (getTabuleiro().posicaoExiste(posicao) && podeMover(posicao)) {
-      matriz[posicao.getLinha()][posicao.getColuna()] = true;
+    novaPosicao.setPosicao(novaPosicao.getLinha() - 1, novaPosicao.getColuna());
+    if (getTabuleiro().posicaoExiste(novaPosicao) && podeMover(novaPosicao)) {
+      matriz[novaPosicao.getLinha()][novaPosicao.getColuna()] = true;
     }
 
     // Baixo
-    posicao.setPosicao(posicao.getLinha() + 1, posicao.getColuna());
-    if (getTabuleiro().posicaoExiste(posicao) && podeMover(posicao)) {
-      matriz[posicao.getLinha()][posicao.getColuna()] = true;
+    novaPosicao.setPosicao(novaPosicao.getLinha() + 1, novaPosicao.getColuna());
+    if (getTabuleiro().posicaoExiste(novaPosicao) && podeMover(novaPosicao)) {
+      matriz[novaPosicao.getLinha()][novaPosicao.getColuna()] = true;
     }
 
     // Esquerda
-    posicao.setPosicao(posicao.getLinha(), posicao.getColuna() - 1);
-    if (getTabuleiro().posicaoExiste(posicao) && podeMover(posicao)) {
-      matriz[posicao.getLinha()][posicao.getColuna()] = true;
+    novaPosicao.setPosicao(novaPosicao.getLinha(), novaPosicao.getColuna() - 1);
+    if (getTabuleiro().posicaoExiste(novaPosicao) && podeMover(novaPosicao)) {
+      matriz[novaPosicao.getLinha()][novaPosicao.getColuna()] = true;
     }
 
     // Direita
-    posicao.setPosicao(posicao.getLinha(), posicao.getColuna() + 1);
-    if (getTabuleiro().posicaoExiste(posicao) && podeMover(posicao)) {
-      matriz[posicao.getLinha()][posicao.getColuna()] = true;
+    novaPosicao.setPosicao(novaPosicao.getLinha(), novaPosicao.getColuna() + 1);
+    if (getTabuleiro().posicaoExiste(novaPosicao) && podeMover(novaPosicao)) {
+      matriz[novaPosicao.getLinha()][novaPosicao.getColuna()] = true;
     }
 
     // Noroeste
-    posicao.setPosicao(posicao.getLinha() - 1, posicao.getColuna() - 1);
-    if (getTabuleiro().posicaoExiste(posicao) && podeMover(posicao)) {
-      matriz[posicao.getLinha()][posicao.getColuna()] = true;
+    novaPosicao.setPosicao(novaPosicao.getLinha() - 1, novaPosicao.getColuna() - 1);
+    if (getTabuleiro().posicaoExiste(novaPosicao) && podeMover(novaPosicao)) {
+      matriz[novaPosicao.getLinha()][novaPosicao.getColuna()] = true;
     }
 
     // Nordeste
-    posicao.setPosicao(posicao.getLinha() - 1, posicao.getColuna() + 1);
-    if (getTabuleiro().posicaoExiste(posicao) && podeMover(posicao)) {
-      matriz[posicao.getLinha()][posicao.getColuna()] = true;
+    novaPosicao.setPosicao(novaPosicao.getLinha() - 1, novaPosicao.getColuna() + 1);
+    if (getTabuleiro().posicaoExiste(novaPosicao) && podeMover(novaPosicao)) {
+      matriz[novaPosicao.getLinha()][novaPosicao.getColuna()] = true;
     }
 
     // Sudoeste
-    posicao.setPosicao(posicao.getLinha() + 1, posicao.getColuna() - 1);
-    if (getTabuleiro().posicaoExiste(posicao) && podeMover(posicao)) {
-      matriz[posicao.getLinha()][posicao.getColuna()] = true;
+    novaPosicao.setPosicao(novaPosicao.getLinha() + 1, novaPosicao.getColuna() - 1);
+    if (getTabuleiro().posicaoExiste(novaPosicao) && podeMover(novaPosicao)) {
+      matriz[novaPosicao.getLinha()][novaPosicao.getColuna()] = true;
     }
 
     // Sudeste
-    posicao.setPosicao(posicao.getLinha() + 1, posicao.getColuna() - 1);
-    if (getTabuleiro().posicaoExiste(posicao) && podeMover(posicao)) {
-      matriz[posicao.getLinha()][posicao.getColuna()] = true;
+    novaPosicao.setPosicao(novaPosicao.getLinha() + 1, novaPosicao.getColuna() - 1);
+    if (getTabuleiro().posicaoExiste(novaPosicao) && podeMover(novaPosicao)) {
+      matriz[novaPosicao.getLinha()][novaPosicao.getColuna()] = true;
     }
 
     return matriz;
