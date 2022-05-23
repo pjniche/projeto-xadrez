@@ -24,7 +24,7 @@ public class Main {
     while (true) {
       try {
         InterfaceTerminal.limpaTela();
-        InterfaceTerminal.mostraTabuleiro(partida.getPecas());
+        InterfaceTerminal.mostraPartida(partida);
         System.out.println();
         System.out.print("Posicao Inicial: ");
         NotacaoXadrez posicaoInicial = InterfaceTerminal.leNotacaoXadrez(scanner);

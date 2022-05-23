@@ -5,6 +5,7 @@ import java.util.Scanner;
 import pecas.Cor;
 import pecas.PecaDeXadrez;
 import tabuleiro.NotacaoXadrez;
+import xadrez.Partida;
 
 /** Interface de usuario com o terminal. */
 public class InterfaceTerminal {
@@ -36,6 +37,13 @@ public class InterfaceTerminal {
     } catch (RuntimeException e) {
       throw new InputMismatchException("Posicao invalida, entre com valores de a1 ate h8!");
     }
+  }
+
+  public static void mostraPartida(Partida partida) {
+    mostraTabuleiro(partida.getPecas());
+    System.out.println();
+    System.out.println("Rodada : " + partida.getRodada());
+    System.out.println("Aguardando jogador: " + partida.getJogadorAtual());
   }
 
   /**

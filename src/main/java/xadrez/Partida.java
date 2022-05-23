@@ -14,12 +14,24 @@ import tabuleiro.Tabuleiro;
 /** Uma partida de xadrez. */
 public class Partida {
 
+  private int rodada;
+  private Cor jogadorAtual;
   @Getter private Tabuleiro tabuleiro;
 
   /** Construtor customizado. */
   public Partida() {
     tabuleiro = new Tabuleiro(8, 8);
+    rodada = 1;
+    jogadorAtual = Cor.BRANCO;
     pecasIniciais();
+  }
+
+  public int getRodada() {
+    return rodada;
+  }
+
+  public Cor getJogadorAtual() {
+    return jogadorAtual;
   }
 
   /**
@@ -56,6 +68,7 @@ public class Partida {
     validaPosicao(posInicial);
     validaDestino(posInicial, posFinal);
     Peca pecaCapturada = mover(posInicial, posFinal);
+    proximaRodada();
     return (PecaDeXadrez) pecaCapturada;
   }
 
@@ -82,6 +95,9 @@ public class Partida {
     if (!tabuleiro.temPeca(posicao)) {
       throw new ChessException("Essa posicao nao tem peca.");
     }
+    if (jogadorAtual != ((PecaDeXadrez)tabuleiro.getPeca(posicao)).getCor()) {
+      throw new ChessException("A peca escolhida nao eh sua.");
+    }
     if (!tabuleiro.getPeca(posicao).existeMovimentoPossivel()) {
       throw new ChessException("Nao existe movimento possivel para esta peca.");
     }
@@ -97,6 +113,11 @@ public class Partida {
     if (!tabuleiro.getPeca(posInicial).movimentoPossivel(posFinal)) {
       throw new ChessException("A peca nao pode se mover para esta posicao.");
     }
+  }
+
+  private void proximaRodada() {
+    rodada++;
+    jogadorAtual = (jogadorAtual == Cor.BRANCO) ? Cor.PRETO : Cor.BRANCO;
   }
 
   /**
