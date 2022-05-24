@@ -1,7 +1,9 @@
 import excecao.ChessException;
 import interfacevisual.InterfaceTerminal;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 import lombok.extern.slf4j.Slf4j;
 import pecas.PecaDeXadrez;
@@ -20,11 +22,12 @@ public class Main {
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
     Partida partida = new Partida();
+    List<PecaDeXadrez> pecasCapturadas = new ArrayList<>();
 
     while (true) {
       try {
         InterfaceTerminal.limpaTela();
-        InterfaceTerminal.mostraPartida(partida);
+        InterfaceTerminal.mostraPartida(partida, pecasCapturadas);
         System.out.println();
         System.out.print("Posicao Inicial: ");
         NotacaoXadrez posicaoInicial = InterfaceTerminal.leNotacaoXadrez(scanner);
@@ -37,6 +40,10 @@ public class Main {
         NotacaoXadrez posicaoFinal = InterfaceTerminal.leNotacaoXadrez(scanner);
 
         PecaDeXadrez pecaCapturada = partida.movimentoDeXadrez(posicaoInicial, posicaoFinal);
+
+        if (pecaCapturada != null) {
+          pecasCapturadas.add(pecaCapturada);
+        }
       } catch (ChessException e) {
         log.warn(e.getMessage());
         scanner.nextLine();

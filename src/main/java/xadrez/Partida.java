@@ -11,12 +11,18 @@ import tabuleiro.NotacaoXadrez;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /** Uma partida de xadrez. */
 public class Partida {
 
   private int rodada;
   private Cor jogadorAtual;
   @Getter private Tabuleiro tabuleiro;
+
+  private List<Peca> pecasNoTabuleiro = new ArrayList<>();
+  private List<Peca> pecasCapturadas = new ArrayList<>();
 
   /** Construtor customizado. */
   public Partida() {
@@ -83,6 +89,12 @@ public class Partida {
     Peca peca = tabuleiro.tiraPeca(posInicial);
     Peca pecaCapturada = tabuleiro.tiraPeca(posFinal);
     tabuleiro.colocaPeca(peca, posFinal);
+
+    if (pecaCapturada != null) {
+      pecasNoTabuleiro.remove(pecaCapturada);
+      pecasCapturadas.add(pecaCapturada);
+    }
+
     return pecaCapturada;
   }
 
@@ -129,6 +141,7 @@ public class Partida {
    */
   private void novaPeca(char coluna, int linha, PecaDeXadrez peca) {
     tabuleiro.colocaPeca(peca, new NotacaoXadrez(coluna, linha).paraPosicao());
+    pecasNoTabuleiro.add(peca);
   }
 
   /** Coloca todas as pecasno tabuleiro em suas posicoes iniciais. */
