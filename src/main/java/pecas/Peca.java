@@ -6,7 +6,7 @@ import tabuleiro.Tabuleiro;
 /** Uma peca possui uma posicao e um tabuleiro para estar. */
 public abstract class Peca {
 
-  private Posicao posicao;
+  protected Posicao posicao;
   private Tabuleiro tabuleiro;
 
   /**

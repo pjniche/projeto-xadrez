@@ -40,7 +40,7 @@ public class NotacaoXadrez {
    * @param posicao Posicao.
    * @return NotacaoXadrez.
    */
-  protected static NotacaoXadrez dePosicao(Posicao posicao) {
+  public static NotacaoXadrez dePosicao(Posicao posicao) {
     return new NotacaoXadrez((char) ('a' - posicao.getColuna()), 8 - posicao.getLinha());
   }
 }

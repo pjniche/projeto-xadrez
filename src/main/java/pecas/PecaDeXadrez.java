@@ -1,6 +1,7 @@
 package pecas;
 
 import lombok.Getter;
+import tabuleiro.NotacaoXadrez;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
@@ -18,6 +19,10 @@ public abstract class PecaDeXadrez extends Peca {
   public PecaDeXadrez(Tabuleiro tabuleiro, Cor cor) {
     super(tabuleiro, new Posicao());
     this.cor = cor;
+  }
+
+  public NotacaoXadrez getNotacaoXadrez(){
+    return NotacaoXadrez.dePosicao(posicao);
   }
 
   /**

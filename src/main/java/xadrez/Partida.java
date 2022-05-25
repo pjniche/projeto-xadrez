@@ -13,6 +13,7 @@ import tabuleiro.Tabuleiro;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /** Uma partida de xadrez. */
 public class Partida {
@@ -20,6 +21,7 @@ public class Partida {
   private int rodada;
   private Cor jogadorAtual;
   @Getter private Tabuleiro tabuleiro;
+  private boolean xeque;
 
   private List<Peca> pecasNoTabuleiro = new ArrayList<>();
   private List<Peca> pecasCapturadas = new ArrayList<>();
@@ -98,6 +100,17 @@ public class Partida {
     return pecaCapturada;
   }
 
+  private void desfazerMovimento(Posicao posInicial, Posicao posFinal, Peca pecaCapturada){
+    Peca peca = tabuleiro.tiraPeca(posFinal);
+    tabuleiro.colocaPeca(peca, posInicial);
+
+    if(pecaCapturada != null){
+      tabuleiro.colocaPeca(pecaCapturada, posFinal);
+      pecasCapturadas.remove(pecaCapturada);
+      pecasNoTabuleiro.add(pecaCapturada);
+    }
+  }
+
   /**
    * Checa se a posicao dada eh valida.
    *
@@ -130,6 +143,22 @@ public class Partida {
   private void proximaRodada() {
     rodada++;
     jogadorAtual = (jogadorAtual == Cor.BRANCO) ? Cor.PRETO : Cor.BRANCO;
+  }
+
+  /** Define a cor do oponente */
+  private Cor oponente(Cor cor){
+    return (cor == Cor.BRANCO) ? Cor.PRETO : Cor.BRANCO;
+  }
+
+  /** Localiza o Rei pela cor, dentre as pecas do tabuleiro*/
+  private PecaDeXadrez rei(Cor cor){
+      List<Peca> list = pecasNoTabuleiro.stream().filter(x ->((PecaDeXadrez)x).getCor() == cor).collect(Collectors.toList());
+      for (Peca peca : list){
+        if (peca instanceof Rei){
+            return (PecaDeXadrez)peca;
+        }
+      }
+      throw new IllegalStateException("Nao existe o Rei da cor"+ cor +" no tabuleiro.");
   }
 
   /**
