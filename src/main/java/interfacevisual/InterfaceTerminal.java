@@ -50,6 +50,9 @@ public class InterfaceTerminal {
     System.out.println();
     System.out.println("Rodada: " + partida.getRodada());
     System.out.println("Aguardando jogador: " + partida.getJogadorAtual());
+    if (partida.getXeque()){
+      System.out.println("Xeque!");
+    }
   }
 
   /**

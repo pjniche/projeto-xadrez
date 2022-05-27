@@ -41,6 +41,6 @@ public class NotacaoXadrez {
    * @return NotacaoXadrez.
    */
   public static NotacaoXadrez dePosicao(Posicao posicao) {
-    return new NotacaoXadrez((char) ('a' - posicao.getColuna()), 8 - posicao.getLinha());
+    return new NotacaoXadrez((char) ('a' + posicao.getColuna()), 8 - posicao.getLinha());
   }
 }

@@ -42,6 +42,8 @@ public class Partida {
     return jogadorAtual;
   }
 
+  public boolean getXeque(){ return xeque; }
+
   /**
    * Cria uma matriz de pecas.
    *
@@ -76,6 +78,14 @@ public class Partida {
     validaPosicao(posInicial);
     validaDestino(posInicial, posFinal);
     Peca pecaCapturada = mover(posInicial, posFinal);
+
+    if (verificaXeque(jogadorAtual)){
+      desfazerMovimento(posInicial, posFinal, pecaCapturada);
+      throw new ChessException("Voce nao pode se colocar em Xeque.");
+    }
+
+    xeque = (verificaXeque(oponente(jogadorAtual))) ? true : false;
+
     proximaRodada();
     return (PecaDeXadrez) pecaCapturada;
   }
@@ -159,6 +169,18 @@ public class Partida {
         }
       }
       throw new IllegalStateException("Nao existe o Rei da cor"+ cor +" no tabuleiro.");
+  }
+
+  private boolean verificaXeque(Cor cor){
+    Posicao posicaoRei = rei(cor).getNotacaoXadrez().paraPosicao();
+    List<Peca> pecasOponente = pecasNoTabuleiro.stream().filter(x ->((PecaDeXadrez)x).getCor() == oponente(cor)).collect(Collectors.toList());
+    for (Peca peca : pecasOponente){
+      boolean[][] matriz = peca.movimentosPossiveis();
+      if (matriz[posicaoRei.getLinha()][posicaoRei.getColuna()]){
+        return true;
+      }
+    }
+    return false;
   }
 
   /**
