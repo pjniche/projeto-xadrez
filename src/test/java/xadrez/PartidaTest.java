@@ -21,13 +21,10 @@ public class PartidaTest {
 
   @Test
   public void testMovimentoDeXadrez_quandoValido_entaoMovePeca() {
-    // ToDo: Refazer depois
-    // Assert auxiliar, provando que nao existe peca anteriormente. (6;0 é equivalente a a2)
-    assertFalse(partida.getTabuleiro().temPeca(new Posicao(6, 0)));
     // Acao
-    partida.movimentoDeXadrez(new NotacaoXadrez('a', 1), new NotacaoXadrez('a', 2));
+    partida.movimentoDeXadrez(new NotacaoXadrez('a', 2), new NotacaoXadrez('a', 3));
     // Checagem
-    assertTrue(partida.getTabuleiro().temPeca(new Posicao(6, 0)));
+    assertTrue(partida.getTabuleiro().temPeca(new Posicao(7, 0)));
   }
 
   @Test
