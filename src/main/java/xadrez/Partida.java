@@ -22,6 +22,7 @@ public class Partida {
   private Cor jogadorAtual;
   @Getter private Tabuleiro tabuleiro;
   private boolean xeque;
+  private boolean xequeMate;
 
   private List<Peca> pecasNoTabuleiro = new ArrayList<>();
   private List<Peca> pecasCapturadas = new ArrayList<>();
@@ -43,6 +44,8 @@ public class Partida {
   }
 
   public boolean getXeque(){ return xeque; }
+
+  public boolean getXequeMate(){ return xequeMate; }
 
   /**
    * Cria uma matriz de pecas.
@@ -86,7 +89,13 @@ public class Partida {
 
     xeque = (verificaXeque(oponente(jogadorAtual))) ? true : false;
 
-    proximaRodada();
+    if(verificaXeque(oponente(jogadorAtual))){
+      xequeMate = true;
+    }
+    else{
+      proximaRodada();
+    }
+
     return (PecaDeXadrez) pecaCapturada;
   }
 
@@ -183,6 +192,31 @@ public class Partida {
     return false;
   }
 
+  private boolean verificaXequeMate(Cor cor){
+    if(!verificaXeque(cor)){
+      return false;
+    }
+    List<Peca> lista = pecasNoTabuleiro.stream().filter(x ->((PecaDeXadrez)x).getCor() == cor).collect(Collectors.toList());
+    for (Peca peca : lista){
+      boolean [][] matriz = peca.movimentosPossiveis();
+      for (int i=0; i < tabuleiro.getLinhas(); i++){
+        for (int j=0; j < tabuleiro.getColunas(); j++){
+          if (matriz[i][j]){
+            Posicao posInicial = ((PecaDeXadrez)peca).getNotacaoXadrez().paraPosicao();
+            Posicao posFinal = new Posicao(i,j);
+            Peca pecaCapturada = mover(posInicial, posFinal);
+            boolean validaXeque = verificaXeque(cor);
+            desfazerMovimento(posInicial, posFinal, pecaCapturada);
+            if(!validaXeque){
+              return false;
+            }
+          }
+        }
+      }
+    }
+    return true;
+  }
+
   /**
    * Coloca uma nova peca no tabuleiro.
    *
@@ -197,12 +231,11 @@ public class Partida {
 
   /** Coloca todas as pecasno tabuleiro em suas posicoes iniciais. */
   private void pecasIniciais() {
-    novaPeca('a', 1, new Torre(tabuleiro, Cor.BRANCO));
-    novaPeca('h', 1, new Torre(tabuleiro, Cor.BRANCO));
-    novaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO));
+    novaPeca('e', 1, new Torre(tabuleiro, Cor.BRANCO));
+    novaPeca('h', 7, new Torre(tabuleiro, Cor.BRANCO));
+    novaPeca('d', 1, new Rei(tabuleiro, Cor.BRANCO));
 
+    novaPeca('b', 8, new Torre(tabuleiro, Cor.PRETO));
     novaPeca('a', 8, new Torre(tabuleiro, Cor.PRETO));
-    novaPeca('h', 8, new Torre(tabuleiro, Cor.PRETO));
-    novaPeca('e', 8, new Rei(tabuleiro, Cor.PRETO));
   }
 }

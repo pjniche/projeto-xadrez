@@ -24,7 +24,7 @@ public class Main {
     Partida partida = new Partida();
     List<PecaDeXadrez> pecasCapturadas = new ArrayList<>();
 
-    while (true) {
+    while (!partida.getXequeMate()) {
       try {
         InterfaceTerminal.limpaTela();
         InterfaceTerminal.mostraPartida(partida, pecasCapturadas);
@@ -52,5 +52,7 @@ public class Main {
         scanner.nextLine();
       }
     }
+    InterfaceTerminal.limpaTela();
+    InterfaceTerminal.mostraPartida(partida,pecasCapturadas);
   }
 }

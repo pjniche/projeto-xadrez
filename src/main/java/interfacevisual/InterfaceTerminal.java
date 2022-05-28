@@ -49,10 +49,17 @@ public class InterfaceTerminal {
     mostraPecasCapturadas(pecasCapturadas);
     System.out.println();
     System.out.println("Rodada: " + partida.getRodada());
-    System.out.println("Aguardando jogador: " + partida.getJogadorAtual());
-    if (partida.getXeque()){
-      System.out.println("Xeque!");
+    if (!partida.getXequeMate()){
+      System.out.println("Aguardando jogador: " + partida.getJogadorAtual());
+      if (partida.getXeque()){
+        System.out.println("Xeque!");
+      }
     }
+    else {
+      System.out.println("XEQUE-MATE!");
+      System.out.println("Ganhador: "+ partida.getJogadorAtual());
+    }
+
   }
 
   /**
