@@ -10,6 +10,8 @@ public abstract class PecaDeXadrez extends Peca {
 
   @Getter private Cor cor;
 
+  private int contagemDeMovimento;
+
   /**
    * Construtor customizado.
    *
@@ -21,6 +23,15 @@ public abstract class PecaDeXadrez extends Peca {
     this.cor = cor;
   }
 
+  public int getContagemDeMovimento(){ return contagemDeMovimento; }
+
+  public void incrementaContagemDeMovimento(){
+    contagemDeMovimento++;
+  }
+
+  public void decrementaContagemDeMovimento(){
+    contagemDeMovimento--;
+  }
   public NotacaoXadrez getNotacaoXadrez(){
     return NotacaoXadrez.dePosicao(posicao);
   }
