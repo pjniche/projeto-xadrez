@@ -33,49 +33,49 @@ public class Rei extends PecaDeXadrez {
     Posicao novaPosicao = new Posicao(0, 0);
 
     // Cima
-    novaPosicao.setPosicao(novaPosicao.getLinha() - 1, novaPosicao.getColuna());
+    novaPosicao.setPosicao(this.getPosicao().getLinha() - 1, this.getPosicao().getColuna());
     if (getTabuleiro().posicaoExiste(novaPosicao) && podeMover(novaPosicao)) {
       matriz[novaPosicao.getLinha()][novaPosicao.getColuna()] = true;
     }
 
     // Baixo
-    novaPosicao.setPosicao(novaPosicao.getLinha() + 1, novaPosicao.getColuna());
+    novaPosicao.setPosicao(this.getPosicao().getLinha() + 1, this.getPosicao().getColuna());
     if (getTabuleiro().posicaoExiste(novaPosicao) && podeMover(novaPosicao)) {
       matriz[novaPosicao.getLinha()][novaPosicao.getColuna()] = true;
     }
 
     // Esquerda
-    novaPosicao.setPosicao(novaPosicao.getLinha(), novaPosicao.getColuna() - 1);
+    novaPosicao.setPosicao(this.getPosicao().getLinha(), this.getPosicao().getColuna() - 1);
     if (getTabuleiro().posicaoExiste(novaPosicao) && podeMover(novaPosicao)) {
       matriz[novaPosicao.getLinha()][novaPosicao.getColuna()] = true;
     }
 
     // Direita
-    novaPosicao.setPosicao(novaPosicao.getLinha(), novaPosicao.getColuna() + 1);
+    novaPosicao.setPosicao(this.getPosicao().getLinha(), this.getPosicao().getColuna() + 1);
     if (getTabuleiro().posicaoExiste(novaPosicao) && podeMover(novaPosicao)) {
       matriz[novaPosicao.getLinha()][novaPosicao.getColuna()] = true;
     }
 
     // Noroeste
-    novaPosicao.setPosicao(novaPosicao.getLinha() - 1, novaPosicao.getColuna() - 1);
+    novaPosicao.setPosicao(this.getPosicao().getLinha() - 1, this.getPosicao().getColuna() - 1);
     if (getTabuleiro().posicaoExiste(novaPosicao) && podeMover(novaPosicao)) {
       matriz[novaPosicao.getLinha()][novaPosicao.getColuna()] = true;
     }
 
     // Nordeste
-    novaPosicao.setPosicao(novaPosicao.getLinha() - 1, novaPosicao.getColuna() + 1);
+    novaPosicao.setPosicao(this.getPosicao().getLinha() - 1, this.getPosicao().getColuna() + 1);
     if (getTabuleiro().posicaoExiste(novaPosicao) && podeMover(novaPosicao)) {
       matriz[novaPosicao.getLinha()][novaPosicao.getColuna()] = true;
     }
 
     // Sudoeste
-    novaPosicao.setPosicao(novaPosicao.getLinha() + 1, novaPosicao.getColuna() - 1);
+    novaPosicao.setPosicao(this.getPosicao().getLinha() + 1, this.getPosicao().getColuna() - 1);
     if (getTabuleiro().posicaoExiste(novaPosicao) && podeMover(novaPosicao)) {
       matriz[novaPosicao.getLinha()][novaPosicao.getColuna()] = true;
     }
 
     // Sudeste
-    novaPosicao.setPosicao(novaPosicao.getLinha() + 1, novaPosicao.getColuna() - 1);
+    novaPosicao.setPosicao(this.getPosicao().getLinha() + 1, this.getPosicao().getColuna() - 1);
     if (getTabuleiro().posicaoExiste(novaPosicao) && podeMover(novaPosicao)) {
       matriz[novaPosicao.getLinha()][novaPosicao.getColuna()] = true;
     }

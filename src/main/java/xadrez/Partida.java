@@ -239,5 +239,6 @@ public class Partida {
 
     novaPeca('b', 8, new Torre(tabuleiro, Cor.PRETO));
     novaPeca('a', 8, new Torre(tabuleiro, Cor.PRETO));
+    novaPeca('e', 8, new Rei(tabuleiro, Cor.PRETO));
   }
 }
