@@ -21,4 +21,4 @@ java -jar target/projeto-xadres.jar
 
 ## Contribuindo
 
-Brendan Buckley, 'nome'.
+Brendan Buckley, Vitor Rocha, 'nome'.
