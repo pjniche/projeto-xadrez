@@ -119,6 +119,24 @@ public class Partida {
       pecasCapturadas.add(pecaCapturada);
     }
 
+    // Roque menor
+    if (peca instanceof Rei && posFinal.getColuna() == posInicial.getColuna() + 2) {
+      Posicao posInicialTorre = new Posicao(posInicial.getLinha(), posInicial.getColuna() + 3);
+      Posicao posFinalTorre = new Posicao(posInicial.getLinha(), posInicial.getColuna() + 1);
+      PecaDeXadrez rook = (PecaDeXadrez)tabuleiro.tiraPeca(posInicialTorre);
+      tabuleiro.colocaPeca(rook, posFinalTorre);
+      rook.incrementaContagemDeMovimento();
+    }
+
+    // Roque maior
+    if (peca instanceof Rei && posFinal.getColuna() == posInicial.getColuna() - 2) {
+      Posicao posInicialTorre = new Posicao(posInicial.getLinha(), posInicial.getColuna() - 4);
+      Posicao posFinalTorre = new Posicao(posInicial.getLinha(), posInicial.getColuna() - 1);
+      PecaDeXadrez rook = (PecaDeXadrez)tabuleiro.tiraPeca(posInicialTorre);
+      tabuleiro.colocaPeca(rook, posFinalTorre);
+      rook.incrementaContagemDeMovimento();
+    }
+
     return pecaCapturada;
   }
 
@@ -131,6 +149,24 @@ public class Partida {
       tabuleiro.colocaPeca(pecaCapturada, posFinal);
       pecasCapturadas.remove(pecaCapturada);
       pecasNoTabuleiro.add(pecaCapturada);
+    }
+
+    // Roque menor
+    if (peca instanceof Rei && posFinal.getColuna() == posInicial.getColuna() + 2) {
+      Posicao posInicialTorre = new Posicao(posInicial.getLinha(), posInicial.getColuna() + 3);
+      Posicao posFinalTorre = new Posicao(posInicial.getLinha(), posInicial.getColuna() + 1);
+      PecaDeXadrez rook = (PecaDeXadrez)tabuleiro.tiraPeca(posFinalTorre);
+      tabuleiro.colocaPeca(rook, posInicialTorre);
+      rook.decrementaContagemDeMovimento();
+    }
+
+    // Roque maior
+    if (peca instanceof Rei && posFinal.getColuna() == posInicial.getColuna() - 2) {
+      Posicao posInicialTorre = new Posicao(posInicial.getLinha(), posInicial.getColuna() - 4);
+      Posicao posFinalTorre = new Posicao(posInicial.getLinha(), posInicial.getColuna() - 1);
+      PecaDeXadrez rook = (PecaDeXadrez)tabuleiro.tiraPeca(posFinalTorre);
+      tabuleiro.colocaPeca(rook, posInicialTorre);
+      rook.decrementaContagemDeMovimento();
     }
   }
 
@@ -238,7 +274,7 @@ public class Partida {
     novaPeca('a', 1, new Torre(tabuleiro, Cor.BRANCO));
     novaPeca('h', 1, new Torre(tabuleiro, Cor.BRANCO));
     novaPeca('d', 1, new Dama(tabuleiro, Cor.BRANCO));
-    novaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO));
+    novaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO,this));
     novaPeca('a', 2, new Peao(tabuleiro, Cor.BRANCO));
     novaPeca('b', 2, new Peao(tabuleiro, Cor.BRANCO));
     novaPeca('c', 2, new Peao(tabuleiro, Cor.BRANCO));
@@ -251,7 +287,7 @@ public class Partida {
     novaPeca('h', 8, new Torre(tabuleiro, Cor.PRETO));
     novaPeca('a', 8, new Torre(tabuleiro, Cor.PRETO));
     novaPeca('d', 8, new Dama(tabuleiro, Cor.PRETO));
-    novaPeca('e', 8, new Rei(tabuleiro, Cor.PRETO));
+    novaPeca('e', 8, new Rei(tabuleiro, Cor.PRETO,this));
     novaPeca('a', 7, new Peao(tabuleiro, Cor.PRETO));
     novaPeca('b', 7, new Peao(tabuleiro, Cor.PRETO));
     novaPeca('c', 7, new Peao(tabuleiro, Cor.PRETO));
