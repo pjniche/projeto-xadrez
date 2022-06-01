@@ -1,5 +1,6 @@
 package pecas;
 
+import lombok.Getter;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
@@ -7,7 +8,8 @@ import tabuleiro.Tabuleiro;
 public abstract class Peca {
 
   protected Posicao posicao;
-  private Tabuleiro tabuleiro;
+  // Vai causar o bug expose representation, mas ainda nao achei maneira melhor de resolver
+  @Getter private Tabuleiro tabuleiro;
 
   /**
    * Construtor customizado.
@@ -16,17 +18,8 @@ public abstract class Peca {
    * @param posicao Posicao da peca.
    */
   public Peca(Tabuleiro tabuleiro, Posicao posicao) {
-    this.tabuleiro = new Tabuleiro(tabuleiro.getLinhas(), tabuleiro.getColunas());
+    this.tabuleiro = tabuleiro;
     this.posicao = new Posicao(posicao.getLinha(), posicao.getColuna());
-  }
-
-  /**
-   * Getter customizado para tabuleiro. Evita os bugs: EI_EXPOSE_REP, EI_EXPOSE_REP2
-   *
-   * @return Tabuleiro.
-   */
-  public Tabuleiro getTabuleiro() {
-    return new Tabuleiro(tabuleiro.getLinhas(), tabuleiro.getColunas());
   }
 
   /**

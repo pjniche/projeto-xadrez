@@ -40,7 +40,7 @@ public class Peao extends PecaDeXadrez{
                 mat[p.getLinha()][p.getColuna()] = true;
             }
             p.setPosicao(this.posicao.getLinha() + 2, this.posicao.getColuna());
-            Posicao p2 = new Posicao(this.posicao.getLinha() - 1, this.posicao.getColuna());
+            Posicao p2 = new Posicao(this.posicao.getLinha() + 1, this.posicao.getColuna());
             if (getTabuleiro().posicaoExiste(p) && !getTabuleiro().temPeca(p) && getTabuleiro().posicaoExiste(p2) && !getTabuleiro().temPeca(p2) && getContagemDeMovimento() == 0) {
                 mat[p.getLinha()][p.getColuna()] = true;
             }
