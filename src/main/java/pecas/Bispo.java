@@ -3,7 +3,7 @@ package pecas;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
-/** Peca Torre de xadrez. */
+/** Peca Bispo de xadrez. */
 public class Bispo extends PecaDeXadrez {
 
     /**
