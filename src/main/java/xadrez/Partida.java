@@ -2,13 +2,7 @@ package xadrez;
 
 import excecao.ChessException;
 import lombok.Getter;
-import pecas.Cor;
-import pecas.Dama;
-import pecas.Peao;
-import pecas.Peca;
-import pecas.PecaDeXadrez;
-import pecas.Rei;
-import pecas.Torre;
+import pecas.*;
 import tabuleiro.NotacaoXadrez;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
@@ -272,9 +266,11 @@ public class Partida {
   /** Coloca todas as pecasno tabuleiro em suas posicoes iniciais. */
   private void pecasIniciais() {
     novaPeca('a', 1, new Torre(tabuleiro, Cor.BRANCO));
+    novaPeca('c', 1, new Bispo(tabuleiro, Cor.BRANCO));
     novaPeca('h', 1, new Torre(tabuleiro, Cor.BRANCO));
     novaPeca('d', 1, new Dama(tabuleiro, Cor.BRANCO));
     novaPeca('e', 1, new Rei(tabuleiro, Cor.BRANCO,this));
+    novaPeca('f', 1, new Bispo(tabuleiro, Cor.BRANCO));
     novaPeca('a', 2, new Peao(tabuleiro, Cor.BRANCO));
     novaPeca('b', 2, new Peao(tabuleiro, Cor.BRANCO));
     novaPeca('c', 2, new Peao(tabuleiro, Cor.BRANCO));
@@ -285,9 +281,11 @@ public class Partida {
     novaPeca('h', 2, new Peao(tabuleiro, Cor.BRANCO));
 
     novaPeca('h', 8, new Torre(tabuleiro, Cor.PRETO));
+    novaPeca('c', 8, new Bispo(tabuleiro, Cor.PRETO));
     novaPeca('a', 8, new Torre(tabuleiro, Cor.PRETO));
     novaPeca('d', 8, new Dama(tabuleiro, Cor.PRETO));
     novaPeca('e', 8, new Rei(tabuleiro, Cor.PRETO,this));
+    novaPeca('f', 8, new Bispo(tabuleiro, Cor.PRETO));
     novaPeca('a', 7, new Peao(tabuleiro, Cor.PRETO));
     novaPeca('b', 7, new Peao(tabuleiro, Cor.PRETO));
     novaPeca('c', 7, new Peao(tabuleiro, Cor.PRETO));
