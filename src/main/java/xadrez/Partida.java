@@ -85,7 +85,7 @@ public class Partida {
 
     xeque = (verificaXeque(oponente(jogadorAtual))) ? true : false;
 
-    if(verificaXeque(oponente(jogadorAtual))){
+    if(verificaXequeMate(oponente(jogadorAtual))){
       xequeMate = true;
     }
     else{
