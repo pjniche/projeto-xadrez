@@ -150,9 +150,9 @@ public class Partida {
       if (posInicial.getColuna() != posFinal.getColuna() && pecaCapturada == null) {
         Posicao posicaoDoPeao;
         if (peca.getCor() == Cor.BRANCO) {
-          posicaoDoPeao = new Posicao(posFinal.getLinha() + 1, posInicial.getColuna());
+          posicaoDoPeao = new Posicao(posFinal.getLinha() + 1, posFinal.getColuna());
         } else {
-          posicaoDoPeao = new Posicao(posFinal.getLinha() - 1, posInicial.getColuna());
+          posicaoDoPeao = new Posicao(posFinal.getLinha() - 1, posFinal.getColuna());
         }
         pecaCapturada = tabuleiro.tiraPeca(posicaoDoPeao);
         pecasCapturadas.add(pecaCapturada);
@@ -198,9 +198,9 @@ public class Partida {
         PecaDeXadrez peao = (PecaDeXadrez)tabuleiro.tiraPeca(posFinal);
         Posicao posicaoDoPeao;
         if (peca.getCor() == Cor.BRANCO) {
-          posicaoDoPeao = new Posicao(3, posInicial.getColuna());
+          posicaoDoPeao = new Posicao(3, posFinal.getColuna());
         } else {
-          posicaoDoPeao = new Posicao(4, posInicial.getColuna());
+          posicaoDoPeao = new Posicao(4, posFinal.getColuna());
         }
         tabuleiro.colocaPeca(peao, posicaoDoPeao);
       }
