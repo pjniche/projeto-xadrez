@@ -3,6 +3,8 @@ package pecas;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
+import java.math.BigDecimal;
+
 /** Peca Bispo de xadrez. */
 public class Bispo extends PecaDeXadrez {
 
@@ -13,7 +15,7 @@ public class Bispo extends PecaDeXadrez {
      * @param cor Cor da peca.
      */
     public Bispo(Tabuleiro tabuleiro, Cor cor) {
-        super(tabuleiro, cor);
+        super(tabuleiro, cor, BigDecimal.valueOf(6.548));
     }
 
     @Override

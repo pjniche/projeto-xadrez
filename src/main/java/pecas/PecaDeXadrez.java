@@ -5,11 +5,13 @@ import tabuleiro.NotacaoXadrez;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
+import java.math.BigDecimal;
+
 /** Uma peca de xadrez com uma cor. */
 public abstract class PecaDeXadrez extends Peca {
 
   @Getter private Cor cor;
-
+  private BigDecimal valor;
   private int contagemDeMovimento;
 
   /**
@@ -21,6 +23,30 @@ public abstract class PecaDeXadrez extends Peca {
   public PecaDeXadrez(Tabuleiro tabuleiro, Cor cor) {
     super(tabuleiro, new Posicao());
     this.cor = cor;
+  }
+
+  /**
+   * Construtor customizado.
+   * @param tabuleiro Tabuleiro de Xadrez.
+   * @param cor Cor da peca.
+   * @param valor Valor da peca para a IA.
+   */
+  public PecaDeXadrez(Tabuleiro tabuleiro, Cor cor, BigDecimal valor) {
+    super(tabuleiro, new Posicao());
+    this.cor = cor;
+    this.valor=valor;
+  }
+
+  public BigDecimal getValor(){
+    return this.valor;
+  }
+
+  public void addValor(BigDecimal valor){
+    this.valor = this.valor.add(valor);
+  }
+
+  public void subValor(BigDecimal valor){
+    this.valor = this.valor.subtract(valor);
   }
 
   public int getContagemDeMovimento(){ return contagemDeMovimento; }

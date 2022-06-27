@@ -3,6 +3,8 @@ package pecas;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
+import java.math.BigDecimal;
+
 /** Peca Cavalo de xadrez. */
 public class Cavalo extends PecaDeXadrez {
 
@@ -13,7 +15,7 @@ public class Cavalo extends PecaDeXadrez {
      * @param cor Cor da peca.
      */
     public Cavalo(Tabuleiro tabuleiro, Cor cor) {
-        super(tabuleiro, cor);
+        super(tabuleiro, cor, BigDecimal.valueOf(6.198));
     }
 
     @Override

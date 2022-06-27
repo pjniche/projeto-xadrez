@@ -3,6 +3,8 @@ package pecas;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
+import java.math.BigDecimal;
+
 /** Peca Torre de xadrez. */
 public class Torre extends PecaDeXadrez {
 
@@ -13,7 +15,7 @@ public class Torre extends PecaDeXadrez {
    * @param cor Cor da peca.
    */
   public Torre(Tabuleiro tabuleiro, Cor cor) {
-    super(tabuleiro, cor);
+    super(tabuleiro, cor, BigDecimal.valueOf(10.127));
   }
 
   @Override

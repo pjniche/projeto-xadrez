@@ -7,6 +7,7 @@ import tabuleiro.NotacaoXadrez;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -160,10 +161,22 @@ public class Partida {
       }
     }
 
+    // Contando pontos
+    if (!(peca instanceof Rei)) {
+      int valorLinha;
+      if (peca.getCor()==Cor.PRETO) {
+        valorLinha = posFinal.getLinha() - posInicial.getLinha();
+      } else {
+        valorLinha = posInicial.getLinha() - posFinal.getLinha();
+      }
+      int valorColuna = Math.abs(posInicial.getColuna()-6) - Math.abs(posFinal.getColuna()-6);
+      peca.addValor(BigDecimal.valueOf(valorLinha+valorColuna));
+    }
+
     return pecaCapturada;
   }
 
-  private void desfazerMovimento(Posicao posInicial, Posicao posFinal, Peca pecaCapturada){
+  public void desfazerMovimento(Posicao posInicial, Posicao posFinal, Peca pecaCapturada){
     PecaDeXadrez peca = (PecaDeXadrez)tabuleiro.tiraPeca(posFinal);
     peca.decrementaContagemDeMovimento();
     tabuleiro.colocaPeca(peca, posInicial);
@@ -205,6 +218,19 @@ public class Partida {
         tabuleiro.colocaPeca(peao, posicaoDoPeao);
       }
     }
+
+    // Contando pontos
+    if (!(peca instanceof Rei)) {
+      int valorLinha;
+      if (peca.getCor()==Cor.PRETO) {
+        valorLinha = posFinal.getLinha() - posInicial.getLinha();
+      } else {
+        valorLinha = posInicial.getLinha() - posFinal.getLinha();
+      }
+      int valorColuna = Math.abs(posInicial.getColuna()-6) - Math.abs(posFinal.getColuna()-6);
+      peca.subValor(BigDecimal.valueOf(valorLinha+valorColuna));
+    }
+
   }
 
   /**
@@ -216,9 +242,10 @@ public class Partida {
     if (!tabuleiro.temPeca(posicao)) {
       throw new ChessException("Essa posicao nao tem peca.");
     }
-    if (jogadorAtual != ((PecaDeXadrez)tabuleiro.getPeca(posicao)).getCor()) {
-      throw new ChessException("A peca escolhida nao eh sua.");
-    }
+    // Desliguei esse if para os testes de IA
+//    if (jogadorAtual != ((PecaDeXadrez)tabuleiro.getPeca(posicao)).getCor()) {
+//      throw new ChessException("A peca escolhida nao eh sua.");
+//    }
     if (!tabuleiro.getPeca(posicao).existeMovimentoPossivel()) {
       throw new ChessException("Nao existe movimento possivel para esta peca.");
     }

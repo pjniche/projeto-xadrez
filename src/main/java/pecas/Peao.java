@@ -4,12 +4,14 @@ import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 import xadrez.Partida;
 
+import java.math.BigDecimal;
+
 public class Peao extends PecaDeXadrez{
 
     private Partida partida;
 
     public Peao(Tabuleiro board, Cor color, Partida partida) {
-        super(board, color);
+        super(board, color, BigDecimal.valueOf(1));
         this.partida = partida;
     }
 

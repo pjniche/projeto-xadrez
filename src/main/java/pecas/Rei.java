@@ -4,6 +4,8 @@ import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 import xadrez.Partida;
 
+import java.math.BigDecimal;
+
 /** Peca Rei de xadrez. */
 public class Rei extends PecaDeXadrez {
 
@@ -16,7 +18,7 @@ public class Rei extends PecaDeXadrez {
    * @param cor Cor da peca.
    */
   public Rei(Tabuleiro tabuleiro, Cor cor,Partida partida) {
-    super(tabuleiro, cor);
+    super(tabuleiro, cor, BigDecimal.valueOf(1000));
     this.partida = partida;
   }
 

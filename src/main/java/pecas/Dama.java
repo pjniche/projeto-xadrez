@@ -3,10 +3,12 @@ package pecas;
 import tabuleiro.Posicao;
 import tabuleiro.Tabuleiro;
 
+import java.math.BigDecimal;
+
 public class Dama extends PecaDeXadrez{
 
     public Dama(Tabuleiro tabuleiro, Cor cor) {
-        super(tabuleiro, cor);
+        super(tabuleiro, cor, BigDecimal.valueOf(20.143));
     }
 
     @Override
