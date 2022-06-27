@@ -70,6 +70,20 @@ public class PartidaTest {
     assertFalse(partida.getXequeMate());
   }
 
+  @Test
+  public void testEnPassant_quandoPossivel_entaoCaptura() {
+    partida.movimentoDeXadrez(new NotacaoXadrez('a', 2), new NotacaoXadrez('a', 4));
+    partida.movimentoDeXadrez(new NotacaoXadrez('c', 7), new NotacaoXadrez('c', 5));
+    partida.movimentoDeXadrez(new NotacaoXadrez('a', 4), new NotacaoXadrez('a', 5));
+    partida.movimentoDeXadrez(new NotacaoXadrez('b', 7), new NotacaoXadrez('b', 5));
+    partida.movimentoDeXadrez(new NotacaoXadrez('a', 5), new NotacaoXadrez('b', 6));
+    partida.movimentoDeXadrez(new NotacaoXadrez('c', 5), new NotacaoXadrez('c', 4));
+    partida.movimentoDeXadrez(new NotacaoXadrez('b', 2), new NotacaoXadrez('b', 4));
+    partida.movimentoDeXadrez(new NotacaoXadrez('c', 4), new NotacaoXadrez('b', 3));
+
+    // ToDo: assert
+  }
+
   // Modelo para testes.
   @Test
   public void testNomeDaFuncao_quandoCondicao_entaoRetornoExperado() {

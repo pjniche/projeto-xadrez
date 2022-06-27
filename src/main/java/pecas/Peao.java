@@ -39,11 +39,11 @@ public class Peao extends PecaDeXadrez{
             }
             // En passant em peças BRANCAS
             if (posicao.getLinha() == 3) {
-                Posicao esquerda = new Posicao(posicao.getLinha(), posicao.getLinha() - 1);
+                Posicao esquerda = new Posicao(posicao.getLinha(), posicao.getColuna() - 1);
                 if (getTabuleiro().posicaoExiste(esquerda) && temPecaInimiga(esquerda) && getTabuleiro().getPeca(esquerda) == partida.getEnPassant()) {
                     mat[esquerda.getLinha() - 1][esquerda.getColuna()] = true;
                 }
-                Posicao direita = new Posicao(posicao.getLinha(), posicao.getLinha() + 1);
+                Posicao direita = new Posicao(posicao.getLinha(), posicao.getColuna() + 1);
                 if (getTabuleiro().posicaoExiste(direita) && temPecaInimiga(direita) && getTabuleiro().getPeca(direita) == partida.getEnPassant()) {
                     mat[direita.getLinha() - 1][direita.getColuna()] = true;
                 }
@@ -69,11 +69,11 @@ public class Peao extends PecaDeXadrez{
             }
             // En passant em peças PRETAS
             if (posicao.getLinha() == 4) {
-                Posicao esquerda = new Posicao(posicao.getLinha(), posicao.getLinha() - 1);
+                Posicao esquerda = new Posicao(posicao.getLinha(), posicao.getColuna() - 1);
                 if (getTabuleiro().posicaoExiste(esquerda) && temPecaInimiga(esquerda) && getTabuleiro().getPeca(esquerda) == partida.getEnPassant()) {
                     mat[esquerda.getLinha() + 1][esquerda.getColuna()] = true;
                 }
-                Posicao direita = new Posicao(posicao.getLinha(), posicao.getLinha() + 1);
+                Posicao direita = new Posicao(posicao.getLinha(), posicao.getColuna() + 1);
                 if (getTabuleiro().posicaoExiste(direita) && temPecaInimiga(direita) && getTabuleiro().getPeca(direita) == partida.getEnPassant()) {
                     mat[direita.getLinha() + 1][direita.getColuna()] = true;
                 }
