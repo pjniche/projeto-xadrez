@@ -11,8 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * ToDo: Adicionar pontuacao para xeque/mate
+ */
 public class TesteDeIa {
 
     private BigDecimal melhorValor = BigDecimal.valueOf(0);
@@ -20,130 +22,108 @@ public class TesteDeIa {
     private Partida partida = new Partida();
     PecaDeXadrez[][] pieces = partida.getPecas();
     List<PecaDeXadrez> capturadas = new ArrayList<>();
+    private boolean first = true;
 
     @Test
     public void test(){
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if(pieces[i][j]!=null && pieces[i][j].getCor()==Cor.PRETO) {
-                    try {
-                        NotacaoXadrez pretoInicio = new NotacaoXadrez((char) ('a' + j), 8 - i);
-                        boolean[][] movimentosPreto = partida.movimentosPossiveis(pretoInicio);
-                        for (int k = 0; k < 8; k++) {
-                            for (int l = 0; l < 8; l++) {
-                                if (movimentosPreto[k][l]) {
-                                    NotacaoXadrez pretoFim = new NotacaoXadrez((char) ('a' + l), 8 - k);
-                                    PecaDeXadrez pretoCaptura = moveUtil("" + "st MOVE", pretoInicio, pretoFim, partida, capturadas);
 
-                                    // Prevendo Brancas
-                                    for (int m = 0; m < 8; m++) {
-                                        for (int n = 0; n < 8; n++) {
-                                            if (pieces[m][n] != null && pieces[m][n].getCor() == Cor.BRANCO) {
-                                                try {
-                                                    NotacaoXadrez brancoInicio = new NotacaoXadrez((char) ('a' + n), 8 - m);
-                                                    boolean[][] movimemntosBranco = partida.movimentosPossiveis(brancoInicio);
-                                                    for (int o = 0; o < 8; o++) {
-                                                        for (int p = 0; p < 8; p++) {
-                                                            if (movimemntosBranco[o][p]) {
-                                                                NotacaoXadrez brancoFim = new NotacaoXadrez((char) ('a' + p), 8 - o);
-                                                                PecaDeXadrez brancoCaptura = moveUtil("" + "st MOVE", brancoInicio, brancoFim, partida, capturadas);
-                                                                BigDecimal valorAtual = checkValue(partida);
-                                                                if(valorAtual.compareTo(melhorValor)<0){
-                                                                    melhorValor=valorAtual;
-                                                                    melhorInicio=pretoInicio;
-                                                                    melhorFim=pretoFim;
-                                                                }
-                                                                undoUtil(brancoInicio,brancoFim,partida,capturadas,brancoCaptura);
-                                                            }
-                                                        }
-                                                    }
-                                                } catch (Exception e) {
-                                                    System.out.println(e.getMessage());
-                                                }
-                                            }
-                                        }
-                                    }
+        partida.movimentoDeXadrez(new NotacaoXadrez('f', 2), new NotacaoXadrez('f', 3));
+        partida.movimentoDeXadrez(new NotacaoXadrez('e', 7), new NotacaoXadrez('e', 5));
+        partida.movimentoDeXadrez(new NotacaoXadrez('g', 2), new NotacaoXadrez('g', 4));
 
-                                    undoUtil(pretoInicio, pretoFim, partida, capturadas, pretoCaptura);
-                                }
-                            }
-                        }
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                    }
-                }
-            }
-        }
+        InterfaceTerminal.limpaTela();
+        InterfaceTerminal.mostraPartida(partida, capturadas);
 
-        assertTrue(checkBoard(partida));
+        Min(2);
+
         System.out.println("Valor: "+melhorValor+"\nMovimento: "+melhorInicio+" - "+melhorFim);
     }
 
     public BigDecimal Min(int profundidade){
+        BigDecimal menor = BigDecimal.valueOf(0);
+        BigDecimal valorAtual = BigDecimal.valueOf(0);
+        boolean imFirst = false;
 
-        BigDecimal valorAtual = checkValue(partida);
+        if(first){
+            imFirst = true;
+            first=false;
+        }
 
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (pieces[i][j] != null && pieces[i][j].getCor() == Cor.PRETO) {
-                    try {
-                        NotacaoXadrez pretoInicio = new NotacaoXadrez((char) ('a' + j), 8 - i);
-                        boolean[][] movimentosPreto = partida.movimentosPossiveis(pretoInicio);
-                        for (int k = 0; k < 8; k++) {
-                            for (int l = 0; l < 8; l++) {
-                                if (movimentosPreto[k][l]) {
-                                    NotacaoXadrez pretoFim = new NotacaoXadrez((char) ('a' + l), 8 - k);
-                                    PecaDeXadrez pretoCaptura = moveUtil("" + "st MOVE", pretoInicio, pretoFim, partida, capturadas);
+        if(profundidade>=0) {
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    if (pieces[i][j] != null && pieces[i][j].getCor() == Cor.PRETO) {
+                        try {
+                            NotacaoXadrez pretoInicio = new NotacaoXadrez((char) ('a' + j), 8 - i);
+                            boolean[][] movimentosPreto = partida.movimentosPossiveis(pretoInicio);
+                            for (int k = 0; k < 8; k++) {
+                                for (int l = 0; l < 8; l++) {
+                                    if (movimentosPreto[k][l]) {
+                                        NotacaoXadrez pretoFim = new NotacaoXadrez((char) ('a' + l), 8 - k);
+                                        PecaDeXadrez pretoCaptura = moveUtil("" + "st MOVE", pretoInicio, pretoFim, partida, capturadas);
+                                        valorAtual = checkValue(partida);
 
-                                    valorAtual.add(Max(profundidade-1));
+                                        valorAtual.add(Max(profundidade - 1));
 
-                                    if(valorAtual.compareTo(melhorValor)<0){
-                                        melhorValor=valorAtual;
-                                        melhorInicio=pretoInicio;
-                                        melhorFim=pretoFim;
+                                        if(valorAtual.compareTo(menor)<0){
+                                            menor=valorAtual;
+                                            if (imFirst){
+                                                melhorValor = valorAtual;
+                                                melhorInicio = pretoInicio;
+                                                melhorFim = pretoFim;
+                                            }
+                                        }
+
+                                        undoUtil(pretoInicio, pretoFim, partida, capturadas, pretoCaptura);
                                     }
-
-                                    undoUtil(pretoInicio, pretoFim, partida, capturadas, pretoCaptura);
                                 }
                             }
+                        } catch (Exception e) {
+                            // do nothing
                         }
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
                     }
                 }
             }
         }
-        return valorAtual;
+        return menor;
     }
 
     public BigDecimal Max(int profundidade){
+        BigDecimal maior = BigDecimal.valueOf(0);
         BigDecimal valorAtual = checkValue(partida);
 
-        for (int m = 0; m < 8; m++) {
-            for (int n = 0; n < 8; n++) {
-                if (pieces[m][n] != null && pieces[m][n].getCor() == Cor.BRANCO) {
-                    try {
-                        NotacaoXadrez brancoInicio = new NotacaoXadrez((char) ('a' + n), 8 - m);
-                        boolean[][] movimemntosBranco = partida.movimentosPossiveis(brancoInicio);
-                        for (int o = 0; o < 8; o++) {
-                            for (int p = 0; p < 8; p++) {
-                                if (movimemntosBranco[o][p]) {
-                                    NotacaoXadrez brancoFim = new NotacaoXadrez((char) ('a' + p), 8 - o);
-                                    PecaDeXadrez brancoCaptura = moveUtil("" + "st MOVE", brancoInicio, brancoFim, partida, capturadas);
+        if(profundidade>=0) {
+            for (int m = 0; m < 8; m++) {
+                for (int n = 0; n < 8; n++) {
+                    if (pieces[m][n] != null && pieces[m][n].getCor() == Cor.BRANCO) {
+                        try {
+                            NotacaoXadrez brancoInicio = new NotacaoXadrez((char) ('a' + n), 8 - m);
+                            boolean[][] movimemntosBranco = partida.movimentosPossiveis(brancoInicio);
+                            for (int o = 0; o < 8; o++) {
+                                for (int p = 0; p < 8; p++) {
+                                    if (movimemntosBranco[o][p]) {
+                                        NotacaoXadrez brancoFim = new NotacaoXadrez((char) ('a' + p), 8 - o);
+                                        PecaDeXadrez brancoCaptura = moveUtil("" + "st MOVE", brancoInicio, brancoFim, partida, capturadas);
+                                        valorAtual = checkValue(partida);
 
-                                    valorAtual.subtract(Min(profundidade-1));
+                                        valorAtual.subtract(Min(profundidade - 1));
 
-                                    undoUtil(brancoInicio,brancoFim,partida,capturadas,brancoCaptura);
+                                        if(valorAtual.compareTo(maior)>0){
+                                            maior=valorAtual;
+                                        }
+
+                                        undoUtil(brancoInicio, brancoFim, partida, capturadas, brancoCaptura);
+                                    }
                                 }
                             }
+                        } catch (Exception e) {
+                            // do nothing
                         }
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
                     }
                 }
             }
         }
-        return valorAtual;
+        return maior;
     }
 
 
@@ -153,7 +133,7 @@ public class TesteDeIa {
         if (capturedPiece != null) {
             captured.add(capturedPiece);
         }
-        printBoard(message,match,captured);
+        // printBoard(message,match,captured);
 
         return capturedPiece;
     }
@@ -165,8 +145,8 @@ public class TesteDeIa {
 
     private void printBoard(String message, Partida match, List<PecaDeXadrez> captured){
         System.out.println(message+" | Value: "+checkValue(match));
-//         InterfaceTerminal.limpaTela();
-//         InterfaceTerminal.mostraPartida(match, captured);
+         InterfaceTerminal.limpaTela();
+         InterfaceTerminal.mostraPartida(match, captured);
     }
 
     private boolean checkBoard(Partida match){

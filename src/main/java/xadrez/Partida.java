@@ -163,20 +163,27 @@ public class Partida {
 
     // Contando pontos
     if (!(peca instanceof Rei)) {
-      int valorLinha;
+      int valorLinha, valorColuna, valorXeque=0;
       if (peca.getCor()==Cor.PRETO) {
         valorLinha = posFinal.getLinha() - posInicial.getLinha();
       } else {
         valorLinha = posInicial.getLinha() - posFinal.getLinha();
       }
-      int valorColuna = Math.abs(posInicial.getColuna()-6) - Math.abs(posFinal.getColuna()-6);
-      peca.addValor(BigDecimal.valueOf(valorLinha+valorColuna));
+      valorColuna = Math.abs(posInicial.getColuna()-6) - Math.abs(posFinal.getColuna()-6);
+//      if(verificaXeque(oponente(jogadorAtual))){
+//        valorXeque=5;
+//      }
+      peca.addValor(BigDecimal.valueOf(valorLinha+valorColuna+valorXeque));
     }
 
     return pecaCapturada;
   }
 
   public void desfazerMovimento(Posicao posInicial, Posicao posFinal, Peca pecaCapturada){
+//    int valorXeque = 0;
+//    if(verificaXeque(oponente(jogadorAtual))){
+//      valorXeque=5;
+//    }
     PecaDeXadrez peca = (PecaDeXadrez)tabuleiro.tiraPeca(posFinal);
     peca.decrementaContagemDeMovimento();
     tabuleiro.colocaPeca(peca, posInicial);
