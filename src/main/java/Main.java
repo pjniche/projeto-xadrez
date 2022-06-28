@@ -44,6 +44,12 @@ public class Main {
         if (pecaCapturada != null) {
           pecasCapturadas.add(pecaCapturada);
         }
+
+        if (partida.getPromovido() != null){
+          System.out.print("Digite a peca desejada para promocao (B/C/R/D): ");
+          String tipo = scanner.nextLine();
+          partida.trocaPecaPromovida(tipo);
+        }
       } catch (ChessException e) {
         log.warn(e.getMessage());
         scanner.nextLine();
