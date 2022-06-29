@@ -46,10 +46,10 @@ public class Main {
         }
 
         if (partida.getPromovido() != null){
-          System.out.print("Digite a peca desejada para promocao (B/C/R/D): ");
+          System.out.print("Digite a peca desejada para promocao (B/C/T/D): ");
           String tipo = scanner.nextLine().toUpperCase();
-          while (!tipo.equals("B") && !tipo.equals("C") && !tipo.equals("R") && !tipo.equals("D")){
-            System.out.print("Valor invalido! Digite a peca desejada para promocao (B/C/R/D): ");
+          while (!tipo.equals("B") && !tipo.equals("C") && !tipo.equals("T") && !tipo.equals("D")){
+            System.out.print("Valor invalido! Digite a peca desejada para promocao (B/C/T/D): ");
             tipo = scanner.nextLine().toUpperCase();
           }
           partida.trocaPecaPromovida(tipo);

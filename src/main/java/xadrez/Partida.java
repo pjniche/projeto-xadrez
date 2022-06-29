@@ -128,7 +128,7 @@ public class Partida {
     if (promovido == null){
       throw new IllegalStateException("Nao ha peca para ser promovida");
     }
-    if (!tipo.equals("B") && !tipo.equals("C") && !tipo.equals("R") && !tipo.equals("D")){
+    if (!tipo.equals("B") && !tipo.equals("C") && !tipo.equals("T") && !tipo.equals("D")){
       return promovido;
     }
     Posicao posicao = promovido.getNotacaoXadrez().paraPosicao();
