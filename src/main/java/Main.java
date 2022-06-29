@@ -1,3 +1,4 @@
+import Ia.Ia;
 import excecao.ChessException;
 import interfacevisual.InterfaceTerminal;
 import java.nio.charset.StandardCharsets;
@@ -23,6 +24,7 @@ public class Main {
     Scanner scanner = new Scanner(System.in, StandardCharsets.UTF_8);
     Partida partida = new Partida();
     List<PecaDeXadrez> pecasCapturadas = new ArrayList<>();
+    Ia ia = new Ia(partida);
 
     while (!partida.getXequeMate()) {
       try {
@@ -54,6 +56,13 @@ public class Main {
           }
           partida.trocaPecaPromovida(tipo);
         }
+
+        // IA ALEATORIA
+        pecaCapturada = partida.movimentoDeXadrez(ia.getInicio(), ia.getFim());
+        if (pecaCapturada != null) {
+          pecasCapturadas.add(pecaCapturada);
+        }
+
       } catch (ChessException e) {
         log.warn(e.getMessage());
         scanner.nextLine();
@@ -64,5 +73,6 @@ public class Main {
     }
     InterfaceTerminal.limpaTela();
     InterfaceTerminal.mostraPartida(partida,pecasCapturadas);
+
   }
 }
