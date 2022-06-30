@@ -21,4 +21,4 @@ java -jar target/projeto-xadres.jar
 
 ## Contribuindo
 
-Brendan Buckley, Vitor Rocha, Paulo Jr. Niche, "nome".
+Brendan Buckley, Luisa Dirce,  Paulo Jr. Niche, Victor F. Sousa e Vitor Rocha.
