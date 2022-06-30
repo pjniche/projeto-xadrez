@@ -58,9 +58,16 @@ public class Main {
         }
 
         // IA ALEATORIA
-        pecaCapturada = partida.movimentoDeXadrez(ia.getInicio(), ia.getFim());
-        if (pecaCapturada != null) {
-          pecasCapturadas.add(pecaCapturada);
+        while(true) {
+          try {
+            pecaCapturada = partida.movimentoDeXadrez(ia.getInicio(), ia.getFim());
+            if (pecaCapturada != null) {
+              pecasCapturadas.add(pecaCapturada);
+            }
+            break;
+          } catch (Exception e){
+            log.info("IA tentou se matar.");
+          }
         }
 
       } catch (ChessException e) {
